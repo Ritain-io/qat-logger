@@ -1,0 +1,13 @@
+log4r_config:
+  loggers:
+    - name: QAT
+      level: INFO
+      outputters:
+        - QAT
+  outputters:
+    - name: QAT
+      type: QatConsoleOutputter
+      default: true
+      formatter:
+        type: QatFormatter
+        colors: true

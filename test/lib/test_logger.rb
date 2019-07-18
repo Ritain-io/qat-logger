@@ -1,0 +1,5 @@
+require_relative 'test_logger/dummy'
+require_relative 'test_logger/instance'
+require_relative 'test_logger/module'
+require_relative 'test_logger/singleton'
+require_relative 'test_logger/submodule'

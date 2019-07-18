@@ -1,0 +1,5 @@
+host: localhost
+port: 9200
+scheme: http
+index: tests-qat-logger
+facility: "QAT Remote Logger Test"

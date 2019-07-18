@@ -1,0 +1,6 @@
+default: >
+  --format pretty
+  --color
+  --format html --out public/index.html
+  --format junit --out public/
+  --strict

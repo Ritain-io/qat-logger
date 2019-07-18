@@ -1,0 +1,21 @@
+log4r_config:
+
+  loggers:
+  - name: QAT::TestLogger
+    level: INFO
+    outputters:
+    - qat_console_outputter
+    - logfile
+
+  outputters:
+  - type: QatConsoleOutputter
+    name: qat_console_outputter
+    formatter:
+      type: QatFormatter
+
+  - type: FileOutputter
+    name: logfile
+    trunc: true
+    filename: 'public/logger_testing.log'
+    formatter:
+      type: QatFormatter

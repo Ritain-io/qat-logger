@@ -1,0 +1,14 @@
+log4r_config:
+
+  loggers:
+  - name: QAT::TestLogger
+    level: 'ALL'
+    trace: yes
+    outputters:
+    - qat_file_outputter
+
+  outputters:
+  - type: QatFileOutputter
+    name: qat_file_outputter
+    trunc: true
+    filename: 'public/logger_testing.log'

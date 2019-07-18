@@ -1,0 +1,15 @@
+log4r_config:
+
+  loggers:
+  - name: QAT::TestLogger
+    level: 'ALL'
+    outputters:
+    - datelogfile
+
+  outputters:
+  - type: DateFileOutputter
+    name: datelogfile
+    dirname: 'public'
+    formatter:
+      type: QatFormatter
+      colors: false

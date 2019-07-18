@@ -1,0 +1,18 @@
+log4r_config:
+
+  loggers:
+  - name: QAT::TestLogger
+    level: 'ALL'
+    trace: yes
+    outputters:
+    - logstash_output
+
+  outputters:
+  - type: QatRemoteOutputter
+    name: logstash_output
+    gelf_server: "localhost"
+    gelf_port: 12201
+    facility: 'QAT Remote Logger Test'
+    formatter:
+      type: PatternFormatter
+      pattern: "%m"

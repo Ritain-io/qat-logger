@@ -1,0 +1,17 @@
+log4r_config:
+
+  loggers:
+  - name: QAT::TestLogger
+    level: INFO
+    outputters:
+    - qat_console_outputter
+
+  - name: QAT::TestLogger::Submodule
+    level: DEBUG
+    trace: true
+    outputters:
+    - qat_console_outputter
+
+  outputters:
+  - type: QatConsoleOutputter
+    name: qat_console_outputter
