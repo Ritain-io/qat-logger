@@ -6,10 +6,10 @@ Gem::Specification.new do |gem|
   gem.summary     = %q{Ruby Logger customization used in the QAT framework, based in the Log4r gem.}
   gem.description = %q{QAT's Ruby Logger customization.}
   gem.email       = 'qat@readinessit.com'
-  gem.homepage    = '<homepage>'
+  gem.homepage    = 'https://github.com/readiness-it/qat-logger'
 
   gem.authors = ['QAT']
-  gem.license = 'Nonstandard'
+  gem.license = 'GPL-3'
 
   extra_files = %w[LICENSE]
   gem.files   = Dir.glob('{lib}/**/*') + extra_files
