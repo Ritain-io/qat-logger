@@ -5,38 +5,22 @@ rvm:
 
 jobs:
   include:
-    #################
-    ### validation ##
-    #################
-    - stage: validation
+    - stage: test
       name: "version"
       script: ruby -e "require './lib/qat/logger/version'; raise StandardError.new unless Gem::Specification::load('qat-logger.gemspec').version.to_s == QAT::Logger::VERSION"
-      if: branch != master AND tag IS blank
-    ###############
-    ### analysis ##
-    ###############
-    - stage: analysis
-      name: "documentation"
+
+    - name: "documentation"
       script: bundle exec rake qat:devel:validate_yard_doc
-      if: branch != master AND tag IS blank
+
     - name: "static"
       script: bundle exec rake qat:devel:static_analysis:validation
-      if: branch != master AND tag IS blank
-    ###########
-    ### test ##
-    ###########
-    - stage: test
-      name: "unit tests"
+
+    - name: "unit tests"
       script: bundle exec rake qat:devel:tests:run
-    ############
-    ### build ##
-    ############
-    - stage: build
-      name: "build gem"
+
+    - name: "gem build"
       script: gem build *.gemspec
-    ##############
-    ### release ##
-    ##############
+
     - stage: release
       name: "gem release"
       script: echo "Deploying to rubygems.org ..."
@@ -47,8 +31,5 @@ jobs:
       if: branch = master AND tag IS present
 
 stages:
-  - validation
-  - analysis
   - test
-  - build
   - release
