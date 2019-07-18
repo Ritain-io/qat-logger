@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-logger'
-  gem.version     = '1.3.1'
+  gem.version     = '6.0.0'
   gem.summary     = %q{Ruby Logger customization used in the QAT framework, based in the Log4r gem.}
   gem.description = %q{QAT's Ruby Logger customization.}
   gem.email       = 'qat@readinessit.com'
