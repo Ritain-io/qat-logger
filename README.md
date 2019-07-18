@@ -1,4 +1,6 @@
-# Qat::Logger
+[![Build Status](https://travis-ci.org/readiness-it/qat-logger.svg?branch=master)](https://travis-ci.org/readiness-it/qat-logger)
+
+# QAT::Logger
 
 - Welcome to the Qat logger gem!
 

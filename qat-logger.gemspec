@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-logger'
-  gem.version     = '1.3.1'
+  gem.version     = '6.0.0'
   gem.summary     = %q{Ruby Logger customization used in the QAT framework, based in the Log4r gem.}
   gem.description = %q{QAT's Ruby Logger customization.}
   gem.email       = 'qat@readinessit.com'
   gem.homepage    = 'https://github.com/readiness-it/qat-logger'
 
   gem.authors = ['QAT']
-  gem.license = 'GPL-3'
+  gem.license = 'GPL-3.0'
 
   extra_files = %w[LICENSE]
   gem.files   = Dir.glob('{lib}/**/*') + extra_files
@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'log4r-gelf', '~> 1.1'
   gem.add_dependency 'awesome_print', '~> 1.2'
 
-  gem.add_development_dependency 'qat-devel', '~> 2.0', '>= 2.0.1'
+  gem.add_development_dependency 'qat-devel', '~> 6.0'
   gem.add_development_dependency 'httparty', '~> 0.14'
   gem.add_development_dependency 'activesupport'
 end
