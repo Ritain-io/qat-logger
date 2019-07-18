@@ -2,7 +2,7 @@
 
 # QAT::Logger
 
-- Welcome to the Qat logger gem!
+- Welcome to the QAT Logger gem!
 
 - This gem support different types of log formats in the following ways:
   - **Color formats;**
