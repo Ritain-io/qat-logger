@@ -10,7 +10,7 @@ jobs:
     #################
     - stage: validation
       name: "version"
-      script: ruby -e "require './lib/qat/devel/version'; raise StandardError.new unless Gem::Specification::load('qat-devel.gemspec').version.to_s == QAT::Devel::VERSION"
+      script: ruby -e "require './lib/qat/devel/version'; raise StandardError.new unless Gem::Specification::load('qat-logger.gemspec').version.to_s == QAT::Logger::VERSION"
       if: branch != master AND tag IS blank
     ###############
     ### analysis ##
@@ -19,44 +19,21 @@ jobs:
       name: "documentation"
       script: bundle exec rake qat:devel:validate_yard_doc
       if: branch != master AND tag IS blank
-#      #TODO: Check GitHub pages
-#      addons:
-#        artifacts:
-#          paths:
-#            - doc/
     - name: "static"
-      script: bundle exec rake qat:devel:static_analysis:html
       script: bundle exec rake qat:devel:static_analysis:validation
       if: branch != master AND tag IS blank
-#      #TODO: Check GitHub pages
-#      addons:
-#        artifacts:
-#          paths:
-#            - test/public/rubycritic/
-
     ###########
     ### test ##
     ###########
     - stage: test
       name: "unit tests"
       script: bundle exec rake qat:devel:tests:run
-      if: branch != master AND branch != develop AND tag IS blank
-      addons:
-        artifacts:
-          paths:
-            - test/public/index.html
-            - test/coverage/
     ############
     ### build ##
     ############
-#    - stage: build
-#          script: gem build qat-reporter-xray.gemspec
-#          if: branch = develop AND tag IS present
-#          addons:
-#            artifacts:
-#              paths:
-#                - qat-reporter-xray-*.gem
-
+    - stage: build
+      name: "build gem"
+      script: gem build *.gemspec
     ##############
     ### release ##
     ##############
@@ -66,13 +43,12 @@ jobs:
       deploy:
         provider: rubygems
         api_key: $RUBYGEMS_API_KEY
-        gemspec: qat-reporter-xray.gemspec
+        gemspec: *.gemspec
       if: branch = master AND tag IS present
-
 
 stages:
   - validation
   - analysis
   - test
-  #- build
+  - build
   - release
