@@ -1,5 +1,7 @@
 # Qat::Logger
 
+[![Build Status](https://travis-ci.org/readiness-it/qat-logger.svg?branch=master)](https://travis-ci.org/readiness-it/qat-logger)
+
 - Welcome to the Qat logger gem!
 
 - This gem support different types of log formats in the following ways:
@@ -132,6 +134,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/readin
 ## Code of Conduct
 
 Everyone interacting in the Qat::Logger project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/qa-toolkit/qat-logger/blob/master/CODE_OF_CONDUCT.md).
-
-
-https://travis-ci.org/readiness-it/qat-logger.svg?branch=master
