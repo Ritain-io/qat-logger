@@ -10,7 +10,7 @@ jobs:
     #################
     - stage: validation
       name: "version"
-      script: ruby -e "require './lib/qat/devel/version'; raise StandardError.new unless Gem::Specification::load('qat-logger.gemspec').version.to_s == QAT::Logger::VERSION"
+      script: ruby -e "require './lib/qat/logger/version'; raise StandardError.new unless Gem::Specification::load('qat-logger.gemspec').version.to_s == QAT::Logger::VERSION"
       if: branch != master AND tag IS blank
     ###############
     ### analysis ##
