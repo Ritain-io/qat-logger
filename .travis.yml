@@ -26,10 +26,11 @@ jobs:
       if: tag IS blank
 
     - name: "unit tests"
+      env: ELK_VERSION=7.2.0 ES_USER=elastic ES_PASSWD=changeme
       script:
         - docker-compose up -d
-        - sleep 60
-        - source .env && bundle exec rake qat:devel:tests:run
+        - until curl --silent -XGET --fail http://localhost:9200; do printf '.'; sleep 1; done
+        - bundle exec rake qat:devel:tests:run
       if: tag IS blank
 
     - name: "gem build"
