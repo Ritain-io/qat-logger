@@ -29,6 +29,7 @@ jobs:
       script:
         - docker-compose up -d
         - sleep 60
+        - source .env
         - bundle exec rake qat:devel:tests:run
       if: tag IS blank
 
