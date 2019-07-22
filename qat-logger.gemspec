@@ -2,12 +2,15 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-logger'
-  gem.version     = '6.0.0'
+  gem.version     = '6.0.1'
   gem.summary     = %q{Ruby Logger customization used in the QAT framework, based in the Log4r gem.}
   gem.description = %q{QAT's Ruby Logger customization.}
   gem.email       = 'qat@readinessit.com'
-  gem.homepage    = 'https://github.com/readiness-it/qat-logger'
+  gem.homepage = 'https://www.readinessit.com'
 
+  gem.metadata    = {
+      'source_code_uri'   => 'https://github.com/readiness-it/qat-logger'
+  }
   gem.authors = ['QAT']
   gem.license = 'GPL-3.0'
 
