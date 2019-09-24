@@ -124,7 +124,7 @@ facility: QAT Remote Logger Test
 
 # Documentation
 
-- [API documentation](https://readiness-it.github.io/qat-logger/doc/index.html)
+- [API documentation](https://readiness-it.github.io/qat-logger/)
 
 
 ## Development
