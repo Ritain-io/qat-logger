@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.25
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="https://travis-ci.org/readiness-it/qat-logger"><img src="https://travis-ci.org/readiness-it/qat-logger.svg?branch=master" alt="Build Status" /></a></p>
+
+<h1 id="qatlogger">QAT::Logger</h1>
+
+<ul>
+  <li>
+    <p>Welcome to the QAT Logger gem!</p>
+  </li>
+  <li>
+    <p>This gem support different types of log formats in the following ways:</p>
+    <ul>
+      <li><strong>Color formats;</strong></li>
+      <li><strong>Different channels and levels;</strong></li>
+      <li><strong>Logs more human readable;</strong></li>
+      <li><strong>File rotation;</strong></li>
+      <li><strong>Remote elastic search logger</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>Add this line to your application’s Gemfile:
+<code>ruby
+gem 'qat-logger'
+</code>
+And then execute:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle install
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install qat-logger
+</code></pre>
+
+<p># Usage
+<strong>Color formats</strong> - In order to use the logger colors it is necessary to have a configuration file in the project folder:</p>
+
+<ul>
+  <li>In the path <code>"/config/your_environment/"</code> of the project, must exist a file named <code>logger.yml</code>. 
+This is  where the color of the logs can be activated for each module. As shown in the example below:</li>
+</ul>
+
+<p>Colors:
+<code>ruby
+'INFO'  =&gt; :green,
+'WARN'  =&gt; :purple,
+'ERROR' =&gt; :red,
+'FATAL' =&gt; :red
+</code>
+logger.yml:
+```yaml
+log4r_config:</p>
+
+<p>loggers:
+  - name: QAT::TestLogger
+    level: INFO
+    outputters:
+    - qat_console_outputter
+    - logfile</p>
+
+<p>outputters:
+  - type: QatConsoleOutputter
+    name: qat_console_outputter
+    formatter:
+      type: QatFormatter</p>
+
+<ul>
+  <li>type: FileOutputter
+name: logfile
+trunc: true
+filename: ‘public/logger_testing.log’
+formatter:
+  type: QatFormatter</li>
+</ul>
+
+<p><code>
+**Channels and levels** - In the logger.yml file, the</code>level<code>defines what type of logs will be seen in the console output. 
+   - Level of importance:
+</code>text
+ FATAL &lt;- most important
+ ERROR
+ WARN
+ INFO
+ DEBUG &lt;- less important
+```</p>
+
+<p>As showed in the example, if we use the word <code>INFO</code> all levels above that will logged.
+  To activate all levels, use the word <code>ALL</code>.
+  The formats are applied to each outputter set in the <code>outputters</code> field.</p>
+
+<ul>
+  <li><strong>Logs more human readable</strong> - Improves log readability for an easiest comprehension of the logs:</li>
+</ul>
+
+<p>An object like this:
+<code>ruby
+{first: 1, second: 2, third: 3}
+</code></p>
+
+<p>Will be seen as: 
+<code>ruby
+:first =&gt; 1,
+:second =&gt; 2,
+:third =&gt; 3
+</code></p>
+
+<ul>
+  <li><strong>File rotation</strong> - file rotation provides a way to limit the total size of the logs retained while still allowing analysis of recent events.
+    <ul>
+      <li>In the path <code>"/config/your_environment/"</code> of the project, must exist a file named <code>logger_rolling_file.yml</code>. 
+As shown in the example below:</li>
+    </ul>
+  </li>
+</ul>
+
+<p>logger_rolling_file.yml:
+```yaml
+log4r_config:</p>
+
+<p>loggers:
+  - name: QAT::TestLogger
+    level: ‘ALL’
+    trace: yes
+    outputters:
+    - qat_file_outputter</p>
+
+<p>outputters:
+  - type: QatFileOutputter
+    name: qat_file_outputter
+    trunc: true
+    filename: ‘public/logger_testing.log’
+<code>
+- **Remote elastic search logger** - remote logger provides a way of getting logs into elastic search.
+    - In order to that a file named</code>remote_logging.yml<code>must exist in the path</code>“/config/your_environment/”<code>:
+</code>
+host: localhost
+port: 9200
+scheme: http
+index: tests-qat-logger
+facility: QAT Remote Logger Test
+```</p>
+
+<h1 id="documentation">Documentation</h1>
+
+<ul>
+  <li><a href="https://readiness-it.github.io/qat-logger/">API documentation</a></li>
+</ul>
+
+<h2 id="development">Development</h2>
+
+<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>rake spec</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
+
+<p>To install this gem onto your local machine, run <code>bundle exec rake install</code>. To release a new version, update the version number in <code>version.rb</code>, and then run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Bug reports and pull requests are welcome on GitHub at https://github.com/readiness-it/qat-logger. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="http://contributor-covenant.org">Contributor Covenant</a> code of conduct.</p>
+
+<h2 id="code-of-conduct">Code of Conduct</h2>
+
+<p>Everyone interacting in the Qat::Logger project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/qa-toolkit/qat-logger/blob/master/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Wed Nov 25 15:02:56 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.25 (ruby-2.5.8).
+</div>
+
+    </div>
+  </body>
+</html>
