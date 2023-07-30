@@ -6,6 +6,6 @@ module QAT
   module Logger
     ##
     # QAT::Logger version
-    VERSION = '8.0.0'
+    VERSION = '9.0.0'
   end
 end
