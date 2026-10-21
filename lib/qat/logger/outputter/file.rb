@@ -1,3 +1,10 @@
+# Log4r 1.1.10 still calls File.exists?, removed in Ruby 3.2.
+unless File.respond_to?(:exists?)
+  class << File
+    alias_method :exists?, :exist?
+  end
+end
+
 require 'log4r/outputter/rollingfileoutputter'
 require_relative '../formatter'
 
