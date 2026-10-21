@@ -48,7 +48,7 @@ module QAT
         level      = sprintf "%-5s", level_name
 
         channel_info = if event.tracer
-                         event.tracer[0].split(File::SEPARATOR)[-1].match(/(.+:\d+)(?::in `.+')/).captures.first
+                         event.tracer[0].split(File::SEPARATOR)[-1].match(/(.+:\d+):in [`'].*[`']/).captures.first
                        else
                          event.fullname
                        end
