@@ -33,6 +33,20 @@ module QAT
       end
 
       private
+      # Log4r 1.1.10 uses File.exists?, which was removed in Ruby 3.2.
+      def open_log_file(mode)
+        if mode == 'w' || !File.exist?(@filename)
+          @start_time = Time.now
+          @datasize = 0
+        else
+          @start_time = File.ctime(@filename)
+          @datasize = File.size?(@filename) || 0
+        end
+
+        @out = File.new(@filename, mode)
+        Log4r::Logger.log_internal { "File #{@filename} opened with mode #{mode}" }
+      end
+
       # Returns the previous file name
       def get_filename
         @previous_file = @filename
